@@ -29,7 +29,8 @@ def print_prediction_accuracy():
 	# Output prediction vs actual
 	correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1)) # returns list of booleans
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32)) # determine fraction of correct predictions
-	print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+	accuracy_value = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+	print("The prediction is this accurate:  {}%".format(100*accuracy_value))
 
 
 """
@@ -108,7 +109,7 @@ for i in range(training_steps):
 		print_prediction_accuracy()
 
 # After done
-print("We're done!  See below for resulting accuracy")
+print("\nWe're done!  See below for resulting accuracy")
 print_prediction_accuracy()
 
 
